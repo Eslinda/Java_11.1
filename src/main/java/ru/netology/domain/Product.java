@@ -35,4 +35,13 @@ public class Product {
         this.name = name;
     }
 
+    public boolean matches(String search) {
+        if (name.contains(search)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }
