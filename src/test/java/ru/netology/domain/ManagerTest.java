@@ -73,4 +73,60 @@ public class ManagerTest {
         assertArrayEquals(actual, expected);
     }
 
+    @Test
+    public void shouldFindPhoneAndTwoBooks() {
+        ProductManager manager = new ProductManager(repo);
+        manager.add(book);
+        manager.add(phone);
+        manager.add(book1);
+        manager.add(phone1);
+        manager.add(book2);
+        manager.add(phone2);
+
+        Product[] actual = manager.searchBy("on");
+        Product[] expected = {book, book2, phone2};
+
+        assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldFindAll() {
+        ProductManager manager = new ProductManager(repo);
+        manager.add(book);
+        manager.add(phone);
+        manager.add(book1);
+        manager.add(phone1);
+        manager.add(book2);
+
+        Product[] actual = manager.searchBy("a");
+        Product[] expected = {book, phone, book1, phone1, book2};
+
+        assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldFindNullElements() {
+        ProductManager manager = new ProductManager(repo);
+        manager.add(book);
+        manager.add(phone);
+        manager.add(book1);
+        manager.add(phone1);
+        manager.add(book2);
+        manager.add(phone2);
+
+        Product[] actual = manager.searchBy("ch");
+        Product[] expected = {};
+
+        assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void searchNullArray() {
+        ProductManager manager = new ProductManager(repo);
+
+        Product[] actual = manager.searchBy("ch");
+        Product[] expected = {};
+
+        assertArrayEquals(actual, expected);
+    }
 }
