@@ -45,4 +45,18 @@ public class RepositoryTest {
         assertArrayEquals(actual, execution);
     }
 
+    @Test
+    public void shouldRemoveNull() {
+        repo.save(book);
+        repo.save(phone);
+        repo.save(book1);
+        repo.save(phone1);
+        repo.save(book2);
+        repo.save(phone2);
+
+        assertThrows(NotFoundException.class, () -> {
+            repo.removeById(68);
+        });
+
+    }
 }
