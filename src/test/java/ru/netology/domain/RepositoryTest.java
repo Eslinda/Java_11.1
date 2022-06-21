@@ -31,6 +31,24 @@ public class RepositoryTest {
     }
 
     @Test
+    public void shouldSaveOneElement() {
+        repo.save(book);
+
+        Product[] actual = repo.findAll();
+        Product[] execution = {book};
+        assertArrayEquals(actual, execution);
+    }
+    @Test
+    public void shouldSaveAlreadyExists() {
+
+        assertThrows(AlreadyExistsException.class, () -> {
+            repo.save(book);
+            repo.save(phone);
+            repo.save(book);
+        });
+    }
+
+    @Test
     public void shouldRemoveOneElement() {
         repo.save(book);
         repo.save(phone);
